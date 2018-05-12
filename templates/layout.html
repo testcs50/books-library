@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheets" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
+    <!-- Последняя компиляция и сжатый CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Дополнение к теме -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Последняя компиляция и сжатый JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style>
+      .header {
+        background-color: {{ color }};
+        padding: 30px;
+        margin-bottom: 5px;
+      }
+
+      .navigation {
+        padding: 0 30px;
+      }
+
+      .fornav {
+        font-weight: bold;
+        float: left;
+        text-align: right;
+        width: 50%;
+      }
+
+      .inblock {
+        display: inline-block;
+        background-color: {{ color }};
+        padding: 5px 10px;
+        width: auto;
+        border-radius: 20px;
+      }
+
+      .forlogout {
+        color: {{ color }};
+        float: right;
+        padding: 5px;
+        width: auto;
+      }
+
+      .header .search {
+        float: right;
+        width: auto;
+      }
+
+      .header .brand {
+        float: right;
+        width: 45%;
+      }
+
+      .white {
+        color: white;
+      }
+
+      /* for clearfix */
+
+      clearfix::after {
+        display: table;
+        content: "";
+        clear: both;
+      }
+
+      /* for quote */
+      .quote {
+        color: gray;
+        font-size: 15px;
+        font-weight: normal;
+      }
+
+      .i {
+        font-style: italic;
+      }
+
+      .original {
+        font-style: normal;
+        font-size: 12px;
+      }
+
+      /* for chapter name*/
+
+      .glava {
+        text-align: center;
+      }
+
+      /* for contrnt float */
+      .leftcontent {
+        float: left;
+        width: 47%;
+        font-weight: bold;
+      }
+
+      .rightcontent {
+        float: right;
+        width: 47%;
+      }
+
+      /* forposition fixed
+
+      .forposition {
+        position: fixed;
+      }
+*/
+
+      /* for simple */
+
+      .simple {
+        text-align: center;
+        border-radius: 25px;
+        margin: 30px;
+        padding: 20px;
+        border: 5px solid {{ color }};
+      }
+
+      /* for work blocks */
+
+      .work {
+        border-bottom: 3px solid {{ color }};
+        padding: 15px;
+      }
+
+      .inwork {
+        font-weight: bold;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="header clearfix">
+    {% if no %}
+      <div class="search" style="display: none;">
+    {% else %}
+      <div class="search">
+    {% endif %}
+      <span class="white">Искать книгу</span><br>
+      <form class="" action="{{ url_for('books') }}" method="post">
+        <input type="text" name="name">
+        <input type="submit" value="Ищи">
+      </form>
+      </div>
+      {% if no %}
+      <div class="brand" style="width: 59%">
+      {% else %}
+      <div class="brand">
+      {% endif %}
+        <h1 class="white"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>  чЁткий book</h1>
+      </div>
+    </div>
+
+    {% block nav %}{% endblock %}
+    {% block body %}{% endblock %}
+  </body>
+</html>

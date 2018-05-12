@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block nav %}
+<div class="navigation clearfix" style="display: none;">
+  <div class="fornav">
+    <span class="inblock"><a class="white" href="{{ url_for('index') }}">На главную</a></span>
+  </div>
+  <div class="forlogout">
+    <a class="right" href="{{ url_for('logout') }}">Выйти</a>
+  </div>
+</div>
+{% endblock %}
+{% block body %}
+  <br><br><br>
+  <div class="container clearfix">
+    <div class="leftcontent">
+      <div class="quote">
+        <p>Пролог:</p>
+        <p class="i">По истеченье некой суммы дней<br>Я стал умней<br>И позабыл о ней<br><span class="original">Видел на одной картинке)))</span></p>
+        <br><br>
+      </div>
+      <h2 class="glava">Введение</h2><br>
+      <p>Ты искал хорошую библиотеку и случайно зашел сюда - в чЁткую библиотеку</p>
+      <p>Здесь не любят книги и не любят тех, кто любит книги</p>
+      <p>Уйти или остаться - решать тебе</p>
+      <p>Выбирай на свой страх и риск</p>
+    </div>
+    <div class="rightcontent">
+      <h1>Войти:</h1>
+      <form class="form-horizontal" action="{{ url_for('login') }}" method="post">
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-2 control-label">Погоняло:</label>
+          <div class="col-sm-10">
+            <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="Например: Ali">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputPassword3" class="col-sm-2 control-label">Пароль:</label>
+          <div class="col-sm-10">
+            <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Например: Ali">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Открыть дверь ногой</button>
+          </div>
+        </div>
+      </form>
+      <p>Если ты здесь первый раз, знай, что у нас с правилами строго. Придется <a href="{{ url_for('reg') }}">зарегистрироваться</a></p>
+    </div>
+  </div>
+{% endblock %}

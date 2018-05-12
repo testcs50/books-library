@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block nav %}
+{% if no %}
+  <div class="navigation clearfix" style="display: none;">
+{% else %}
+  <div class="navigation clearfix">
+{% endif %}
+    <div class="fornav">
+      <span class="inblock"><a class="white" href="{{ url_for('index') }}">На главную</a></span>
+    </div>
+    <div class="forlogout">
+      <a class="right" href="{{ url_for('logout') }}">Выйти</a>
+    </div>
+  </div>
+{% endblock %}
+
+{% block body %}
+  <div class="simple">
+    <h1>Error!</h1>
+    <p>{{ text }}</p>
+    <a href="{{ url_for('index') }}">На главную</a>
+  </div>
+{% endblock %}

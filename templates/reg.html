@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <br><br><br>
+  <div class="container clearfix">
+    <div class="leftcontent">
+      <div class="quote">
+        <p>Пролог:</p>
+        <p class="i">
+          Мистер и миссис Дурсль проживали в доме номер четыре по Тисовой улице и всегда с гордостью заявляли, что они, слава богу, абсолютно нормальные люди
+          <br>
+          <span class="original">Из книги "Гарри Поттер", хоть я ее и не читал</span>
+        </p>
+        <br><br>
+      </div>
+      <h2 class="glava">Пацан к успеху шел</h2>
+      <br>
+      <p>Ты сделал правильный выбор. Как ты уже понял мы здесь портим книги, пишем на них все что угодно. Теперь скажи нам свое имя. и знай, что обратного пути у тебя не будет. ЧёТКОСТЬ ФОРЕВА.</p>
+      <p>А еще у нас есть 2 правила:</p>
+      <p>1) Не рассказывай о нас родителям</p>
+      <p>2) Если один раз вошел на сайт, то, не испортив хотя бы 1 книгу, ты не можешь выйти</p>
+    </div>
+    <div class="rightcontent">
+      <h1>Регистрация:</h1>
+      <form class="form-horizontal" action="{{ url_for('reg') }}" method="post">
+        <div class="form-group">
+          <label for="inputEmail3" class="col-sm-2 control-label">Погоняло:</label>
+          <div class="col-sm-10">
+            <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="Например: Ali">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputPassword3" class="col-sm-2 control-label">Пароль:</label>
+          <div class="col-sm-10">
+            <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Например: Ali">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Стать чЁтким</button>
+          </div>
+        </div>
+      </form>
+      <p>Уже зарегистрирован? <a href="{{ url_for('index') }}">Войти</a></p>
+    </div>
+  </div>
+{% endblock %}

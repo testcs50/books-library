@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block nav %}
+  <div class="navigation clearfix">
+    <div class="fornav">
+      <span class="inblock"><a class="white" href="{{ url_for('index') }}">На главную</a></span>
+    </div>
+    <div class="forlogout">
+      <a class="right" href="{{ url_for('logout') }}">Выйти</a>
+    </div>
+  </div>
+{% endblock %}
+
+{% block body %}
+  <br><br><br>
+  <div class="container clearfix">
+    <div class="leftcontent">
+      <div class="quote">
+        <p>Пролог:</p>
+        <p class="i">
+          Книга - друг человека
+          <br>
+          <span class="original">Народная мудрость (чтоб её)</span>
+        </p>
+        <br><br>
+      </div>
+      <h2 class="glava">{{ bookname }}</h2>
+      <br>
+      <p>Автор: {{ book.author }}</p>
+      <br>
+      <p>Название: {{ book.title }}</p>
+      <br>
+      <p>isbn: {{ book.isbn }}</p>
+      <br>
+      <p>Год: {{ book.year }}</p>
+      <br>
+      <p>Теперь напиши на полях книги какую то гадость</p>
+      <form class="" action="{{ url_for('addcomment', book_id=book.id) }}" method="post">
+        <input type="text" name="name">
+        <input type="submit" value="Испоганить книгу">
+      </form>
+    </div>
+    <div class="rightcontent">
+      <h2 class="glava">Комментарии</h2>
+      {% for comment in comments %}
+      <div class="work">
+        <span class="inwork">{{ comment[0] }}</span>
+        <span class="outwork"></span>
+      </div>
+      {% else %}
+      <div class="glava">
+        <p class="inwork">Без комментариев!</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

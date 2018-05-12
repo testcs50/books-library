@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block nav %}
+  <div class="navigation clearfix">
+    <div class="fornav">
+      <span class="inblock"><a class="white" href="{{ url_for('index') }}">На главную</a></span>
+    </div>
+    <div class="forlogout">
+      <a class="right" href="{{ url_for('logout') }}">Выйти</a>
+    </div>
+  </div>
+{% endblock %}
+
+{% block body %}
+  <div class="container clearfix">
+    <div class="leftcontent">
+      <div class="quote">
+        <p>Пролог:</p>
+        <p class="i">
+          Бороться и искать, найти и не сдаваться
+          <br>
+          <span class="original">Из книги "Два капитана"</span>
+        </p>
+        <br><br>
+      </div>
+      <h2 class="glava">Список Шендлера или как там его</h2>
+      <br>
+      <p>Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть!</p>
+    </div>
+    <div class="rightcontent">
+      <h2 class="glava">Книги:</h2>
+      <br>
+      {% for book in books %}
+      <div class="work">
+        <span class="inwork"><a href="{{ url_for('book', book_id=book.id) }}">{{ book.title }}</a></span>
+      </div>
+      {% else %}
+      <div class="glava">
+        <p class="inwork">По твоим соображениям ничего не найдено</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
