@@ -1,31 +1,24 @@
 {% extends "layout.html" %}
-{% block nav %}
-<div class="navigation clearfix" style="display: none;">
-  <div class="fornav">
-    <span class="inblock"><a class="white" href="{{ url_for('index') }}">На главную</a></span>
-  </div>
-  <div class="forlogout">
-    <a class="right" href="{{ url_for('logout') }}">Выйти</a>
-  </div>
-</div>
-{% endblock %}
+
 {% block body %}
-  <br><br><br>
-  <div class="container clearfix">
-    <div class="leftcontent">
-      <div class="quote">
-        <p>Пролог:</p>
-        <p class="i">По истеченье некой суммы дней<br>Я стал умней<br>И позабыл о ней<br><span class="original">Видел на одной картинке)))</span></p>
-        <br><br>
+  <div class="flex-container">
+    <div class="container-left flex-elem">
+      <h2 class="chapter-name">Предисловие</h2>
+      <div class="pre-chapter">
+        <h4 class="prolog"></h4>
+        <p class="prolog-text"></p>
+        <div class="prolog-source"></div>
       </div>
-      <h2 class="glava">Введение</h2><br>
-      <p>Ты искал хорошую библиотеку и случайно зашел сюда - в чЁткую библиотеку</p>
-      <p>Здесь не любят книги и не любят тех, кто любит книги</p>
-      <p>Уйти или остаться - решать тебе</p>
-      <p>Выбирай на свой страх и риск</p>
+      <div class="chapter-text">
+        <p>Ассаламу 1алайкум! Вашему вниманию представлен проект в рамках обучения по курсу "Web Programming с Python и JavaScript" в ГГНТУ.</p>
+        <p>Проект направлен на закрепление полученныхв в ходе прохождения курса знаний и достижение необходимых умений и навыков</p>
+        <p>На данном сайте вы можете найти интересующую вас известную книгу (количество книг ограничено) и комментарии и оценки к ней. А также оставлять свои комментарии и оценки</p>
+        <h4>Добро пожаловать!</h4>
+      </div>
+      <div class="other-info"></div>
     </div>
-    <div class="rightcontent">
-      <h1>Войти:</h1>
+    <div class="container-right flex-elem">
+      <h2>Войти:</h2>
       <form class="form-horizontal" action="{{ url_for('login') }}" method="post">
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Погоняло:</label>
@@ -45,7 +38,7 @@
           </div>
         </div>
       </form>
-      <p>Если ты здесь первый раз, знай, что у нас с правилами строго. Придется <a href="{{ url_for('reg') }}">зарегистрироваться</a></p>
+      <p>Если ты здесь первый раз, знай, что у нас с правилами строго. Придется <a href="{{ url_for('registration') }}">зарегистрироваться</a></p>
     </div>
   </div>
 {% endblock %}

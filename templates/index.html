@@ -1,46 +1,38 @@
 {% extends "layout.html" %}
 
-{% block nav %}
-  <div class="navigation clearfix">
-    <div class="fornav">
-      <span class="inblock" style="display: none;"><a class="white" href="{{ url_for('index') }}">На главную</a></span>
-    </div>
-    <div class="forlogout">
-      <a class="right" href="{{ url_for('logout') }}">Выйти</a>
-    </div>
-  </div>
-{% endblock %}
-
 {% block body %}
-  <br><br><br>
-  <div class="container clearfix">
-    <div class="leftcontent">
-      <div class="quote">
-        <p>Пролог:</p>
-        <p class="i">
-          Скажу честно. Я железный человек
-          <br>
-          <span class="original">Из х/ф "Железный человек"</span>
-        </p>
-        <br><br>
+  <div class="flex-container">
+    <div class="container-left flex-elem">
+      <h2 class="chapter-name">The Начало</h2>
+      <div class="pre-chapter">
+        <h4 class="prolog">Пролог:</h4>
+        <p class="prolog-text">Скажу честно. Я железный человек</p>
+        <div class="prolog-source">Из х/ф "Железный человек"</div>
       </div>
-      <h2 class="glava">The начало</h2>
-      <br>
-      <p>Дарова, {{ username }}!<br> Можешь смело приступать к порче книг.</p>
-      <p>Только не забывай о правилах:</p>
-      <p>1) Не рассказывай о нас родителям</p>
-      <p>2) Если один раз вошел на сайт, то, не испортив хотя бы 1 книгу, ты не можешь выйти</p>
+      <div class="chapter-text">
+        <p>
+          Дарова, {{ username }}!
+          Ты искал хорошую библиотеку и зашел сюда - в чЁткую библиотеку.
+          Здесь не любят книги и не любят тех, кто любит книги.
+          Уйти или остаться - решать тебе.
+          Выбирай на свой страх и риск
+        </p>
+        <p> Можешь приступать к порче книг хоть щас</p>
+        <p>Только не забывай о правилах:</p>
+        <p>1) Не рассказывай о нас родителям</p>
+        <p>2) Если один раз вошел на сайт, то, не испортив хотя бы 1 книгу, ты не можешь выйти</p>
+      </div>
+      <div class="other-info"></div>
     </div>
-    <div class="rightcontent">
-      <h2 class="glava">Твои работы:</h2>
-      <br>
-      {% for book in isDoYet %}
-        <div class="work">
-          <span class="inwork"><a href="{{ url_for('book', book_id=book.id) }}">{{ book.name }}</a></span>
+    <div class="container-right flex-elem">
+      <h2>Твоя активность:</h2>
+      {% for book in doesYet %}
+        <div class="view-block">
+          <a href="{{ url_for('book', book_id=book.id) }}">{{ book.name }}</a>
         </div>
       {% else %}
-        <div class="glava">
-          <p class="inwork">Тебе пока нечем гордиться</p>
+        <div class="else-view-block">
+          <p>По твоим соображениям ничего не найдено</p>
         </div>
       {% endfor %}
     </div>

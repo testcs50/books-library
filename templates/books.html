@@ -1,43 +1,45 @@
 {% extends "layout.html" %}
 
-{% block nav %}
-  <div class="navigation clearfix">
-    <div class="fornav">
-      <span class="inblock"><a class="white" href="{{ url_for('index') }}">На главную</a></span>
-    </div>
-    <div class="forlogout">
-      <a class="right" href="{{ url_for('logout') }}">Выйти</a>
-    </div>
-  </div>
-{% endblock %}
-
 {% block body %}
-  <div class="container clearfix">
-    <div class="leftcontent">
-      <div class="quote">
-        <p>Пролог:</p>
-        <p class="i">
-          Бороться и искать, найти и не сдаваться
-          <br>
-          <span class="original">Из книги "Два капитана"</span>
+  <div class="flex-container">
+    <div class="container-left flex-elem">
+      <h2 class="chapter-name">Список Шендлера или как там его</h2>
+      <div class="pre-chapter">
+        <h4 class="prolog">Пролог:</h4>
+        <p class="prolog-text">Бороться и искать, найти и не сдаваться</p>
+        <div class="prolog-source">Из книги "Два капитана"</div>
+      </div>
+      <div class="chapter-text">
+        <p>
+          В городе, Коннор стал свидетелем заговора тамплиеров,
+          которые хотели развязать войну Америки и Британии.
+          Он увидел как зародилась революция,
+          когда солдаты начали расстреливать мирных жителей.
+          Среди тамплиеров Коннор увидел и своего отца Хэйтема,
+          который приказал схватить ассасина.
+          После побега от солдат и своего первого испытания,
+          герой получил от Ахиллеса скрытый клинок.
         </p>
-        <br><br>
+        <p>
+          Последующие годы обучения Коннора прошли в помощи невинным людям,
+          которым он предлагал поселиться у поместья учителя.
+          Так вокруг поместья Дэвенпорта образовалась небольшая община.
+          По мимо этого Коннор взялся за восстановление судна "Аквила",
+          севшего на мель. После восстановления герой научился ходить под парусом и стрелять из пушек.
+        </p>
       </div>
-      <h2 class="glava">Список Шендлера или как там его</h2>
-      <br>
-      <p>Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть! Испорть!</p>
+      <div class="other-info"></div>
     </div>
-    <div class="rightcontent">
-      <h2 class="glava">Книги:</h2>
-      <br>
+    <div class="container-right flex-elem">
+      <h2>Результаты поиска:</h2>
       {% for book in books %}
-      <div class="work">
-        <span class="inwork"><a href="{{ url_for('book', book_id=book.id) }}">{{ book.title }}</a></span>
-      </div>
+        <div class="view-block">
+          <a href="{{ url_for('book', book_id=book.id) }}">{{ book.title }}, {{ book.author }}, {{ book.year }}</a>
+        </div>
       {% else %}
-      <div class="glava">
-        <p class="inwork">По твоим соображениям ничего не найдено</p>
-      </div>
+        <div class="else-view-block">
+          <p>По твоим соображениям ничего не найдено</p>
+        </div>
       {% endfor %}
     </div>
   </div>

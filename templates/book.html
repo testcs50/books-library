@@ -1,56 +1,116 @@
 {% extends "layout.html" %}
 
-{% block nav %}
-  <div class="navigation clearfix">
-    <div class="fornav">
-      <span class="inblock"><a class="white" href="{{ url_for('index') }}">На главную</a></span>
-    </div>
-    <div class="forlogout">
-      <a class="right" href="{{ url_for('logout') }}">Выйти</a>
-    </div>
-  </div>
+{% block style %}
+  <style>
+    .visual-rating {
+      background-image: linear-gradient(to right, green, green {{ ratingInfo[2] }}%, red {{ ratingInfo[2] }}%, red)
+    }
+  </style>
 {% endblock %}
 
 {% block body %}
-  <br><br><br>
-  <div class="container clearfix">
-    <div class="leftcontent">
-      <div class="quote">
-        <p>Пролог:</p>
-        <p class="i">
-          Книга - друг человека
-          <br>
-          <span class="original">Народная мудрость (чтоб её)</span>
-        </p>
-        <br><br>
+  <div class="flex-container">
+    <div class="container-left flex-elem">
+      <h2 class="chapter-name">{{ book.title }}</h2>
+      <div class="pre-chapter">
+        <h4 class="prolog">Пролог:</h4>
+        <p class="prolog-text">Книга - друг человека</p>
+        <div class="prolog-source">Народная мудрость (чтоб её)</div>
       </div>
-      <h2 class="glava">{{ bookname }}</h2>
-      <br>
-      <p>Автор: {{ book.author }}</p>
-      <br>
-      <p>Название: {{ book.title }}</p>
-      <br>
-      <p>isbn: {{ book.isbn }}</p>
-      <br>
-      <p>Год: {{ book.year }}</p>
-      <br>
-      <p>Теперь напиши на полях книги какую то гадость</p>
-      <form class="" action="{{ url_for('addcomment', book_id=book.id) }}" method="post">
-        <input type="text" name="name">
-        <input type="submit" value="Испоганить книгу">
-      </form>
+      <div class="chapter-text">
+        <div class="about-book">
+          <p>Автор: {{ book.author }}</p>
+          <p>Название: {{ book.title }}</p>
+          <p>isbn: {{ book.isbn }}</p>
+          <p>Год: {{ book.year }}</p>
+        </div>
+
+        <h4>Рейтинг книги</h4>
+        <div class="book-rating">
+          <p>Количество голосов: {{ ratingInfo[0] }} <sup>*</sup></p>
+          <p>Среднее количество голосов: {{ ratingInfo[1] }} <sup>**</sup></p>
+          <div class="visual-rating"></div>
+        </div>
+
+        <h4>Добавить комментарий</h4>
+
+        {% if isWriteYet %}
+          <div class="else-view-block">
+            <p>На этой книге уже есть твой след.</p>
+          </div>
+        {% else %}
+          <div class="add-comment">
+            <form class="add-comment-form" action="{{ url_for('addcomment', book_id=book.id) }}" method="post">
+              <span class="ozenka">Оценка:</span>
+              <input id="1" type="radio" name="rating" value="1" required onclick="clickToOne()">
+              <label for="1">
+                <svg>
+                  <polygon class="one-star" points="4,12 0,6 7,6 10,0 13,6 20,6 16,12 18,20 10,15 2,20">
+                </svg>
+              </label>
+              <input id="2" type="radio" name="rating" value="2" required onclick="clickToTwo()">
+              <label for="2">
+                <svg>
+                  <polygon class="two-star" points="4,12 0,6 7,6 10,0 13,6 20,6 16,12 18,20 10,15 2,20">
+                </svg>
+              </label>
+              <input id="3" type="radio" name="rating" value="3" required onclick="clickToThree()">
+              <label for="3">
+                <svg>
+                  <polygon class="three-star" points="4,12 0,6 7,6 10,0 13,6 20,6 16,12 18,20 10,15 2,20">
+                </svg>
+              </label>
+              <input id="4" type="radio" name="rating" value="4" required onclick="clickToFour()">
+              <label for="4">
+                <svg>
+                  <polygon class="four-star" points="4,12 0,6 7,6 10,0 13,6 20,6 16,12 18,20 10,15 2,20">
+                </svg>
+              </label>
+              <input id="5" type="radio" name="rating" value="5" required onclick="clickToFive()">
+              <label for="5">
+                <svg>
+                  <polygon class="five-star" points="4,12 0,6 7,6 10,0 13,6 20,6 16,12 18,20 10,15 2,20">
+                </svg>
+              </label>
+              <br>
+              <textarea name="comment" rows="2" required>Комментарий</textarea>
+              <br>
+              <br>
+              <input type="submit" value="Испоганить книгу">
+            </form>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="other-info">
+        */** - представленные значения рейтинга являются общими значениями с данного ресурса и <a href="https://www.goodreads.com/">goodreads.com</a>
+      </div>
+
     </div>
-    <div class="rightcontent">
-      <h2 class="glava">Комментарии</h2>
+    <div class="container-right flex-elem">
+      <h2>Комментарии</h2>
       {% for comment in comments %}
-      <div class="work">
-        <span class="inwork">{{ comment[0] }}</span>
-        <span class="outwork"></span>
-      </div>
+        <div class="comment-block">
+          <span class="comment-author">{{ comment.author }}</span>
+          <div class="comment-rating">
+            {% for i in range(comment.rating) %}
+              <svg>
+                <polygon points="7,0 9,5 14,5 11,9 13,15 7,11 1,15 3,9 0,5 5,5" fill="gray">
+              </svg>
+            {% endfor %}
+            {% for i in range(5 - comment.rating) %}
+              <svg>
+                <polygon points="7,0 9,5 14,5 11,9 13,15 7,11 1,15 3,9 0,5 5,5" fill="none" stroke="gray">
+              </svg>
+            {% endfor %}
+          </div>
+          <span class="comment-text">{{ comment.text }}</span>
+        </div>
+        <br>
       {% else %}
-      <div class="glava">
-        <p class="inwork">Без комментариев!</p>
-      </div>
+        <div class="else-view-block">
+          <p>Без комментариев!</p>
+        </div>
       {% endfor %}
     </div>
   </div>

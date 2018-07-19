@@ -1,0 +1,264 @@
+/*стили для разметки header layout*/
+
+.my-header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 30px;
+}
+
+.brand-book {
+  flex-grow: 3;
+}
+
+.search-book {
+  padding: 20px;
+}
+
+/*стили для разметки навигации в layout*/
+
+.my-navigation {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10px 30px;
+}
+
+.link-to-head {
+  flex-grow: 3;
+}
+
+.link-to-head span {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/*оформление текста в layout*/
+
+.brand-book {
+  text-align: center;
+  color: white;
+}
+
+.link-to-head {
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+.link-to-head span a {
+  color: white;
+  font-weight: bold;
+}
+
+/*стилизация формы поиска книги в layout*/
+
+.search-book-form label {
+  color: white;
+  margin-bottom: 10px;
+}
+
+/*стили для основной разметки других страниц*/
+
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 30px 150px;
+}
+
+.flex-elem {
+  flex-basis: 45%;
+  padding: 30px;
+}
+
+/*стилизация "литературной" левой части основного содержания страниц*/
+
+.container-left {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-row-gap: 18px;
+  grid-template-areas:
+    "chapter-name chapter-name chapter-name"
+    ". . pre-chapter"
+    "chapter-text chapter-text chapter-text"
+    "other-info other-info other-info"
+}
+
+.chapter-name {
+  grid-area: chapter-name;
+}
+
+.pre-chapter {
+  grid-area: pre-chapter;
+}
+
+.chapter-text {
+  grid-area: chapter-text;
+}
+
+.other-info {
+  grid-area: other-info;
+}
+
+/*стилизация основной правой части основного содержания страниц*/
+
+.container-right h2 {
+  margin-bottom: 50px;
+}
+
+.view-block {
+  padding: 15px 30px;
+}
+
+/*оформление текста в основном содержании*/
+
+.chapter-name {
+  text-align: center;
+}
+
+.prolog {
+  margin-bottom: 5px;
+}
+
+.prolog-text {
+  font-style: italic;
+  margin-bottom: 3px;
+}
+
+.prolog-source {
+  text-align: right;
+  color: gray;
+  font-style: italic;
+  font-size: 10px;
+}
+
+.chapter-text h4 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.container-right h2 {
+  text-align: center;
+}
+
+.view-block a {
+  font-weight: bold;
+}
+
+.else-view-block {
+  text-align: center;
+}
+
+/*стилизация страницы error и answer*/
+
+.simple {
+  text-align: center;
+}
+
+.simple p,
+.simple a {
+  font-weight: bold;
+}
+
+/*стилизация текста в book.html*/
+
+.about-book {
+  padding: 20px;
+}
+
+.about-book p,
+.book-rating p {
+  font-weight: bold;
+  line-height: 0.9;
+}
+
+.book-rating p sup {
+  font-size: 12px;
+}
+
+.other-info {
+  color: gray;
+  font-size: 10px;
+}
+
+.other-info a {
+  color: gray;
+}
+
+/*стилизация комментариев*/
+
+.comment-block {
+  border-radius: 10px;
+  padding: 8px;
+  margin: 0 10px;
+}
+
+.comment-text {
+  display:block;
+  margin: 5px;
+}
+
+.comment-author,
+.comment-rating {
+  display:inline-block;
+}
+
+.comment-author {
+  font-weight: bold;
+  margin: 0 5px 5px 5px;
+}
+
+.comment-rating {
+  margin-left: 10px;
+}
+
+.comment-text {
+  margin-left: 50px;
+  padding-left: 5px;
+}
+
+.comment-rating svg {
+  width: 15px;
+  height: 15px;
+}
+
+/*стилизация звездочек рейтинга*/
+
+.add-comment-form label svg {
+  width: 20px;
+  height: 20px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.add-comment-form label svg polygon {
+  fill: none;
+  stroke: gray;
+}
+
+/*стилизация формы добавления комменария*/
+
+.add-comment-form {
+  text-align: center;
+}
+
+textarea {
+  margin: 10px;
+}
+
+/*стилизация блока с рейтингом книги*/
+
+.book-rating p:last-of-type,
+.book-rating .visual-rating {
+  display: inline-block;
+}
+
+.visual-rating {
+  height: 10px;
+  width: 50%;
+  margin-left: 20px;
+}
