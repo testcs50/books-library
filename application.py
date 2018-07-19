@@ -97,10 +97,10 @@ def login():
         for user in users:
 
             #если среди запрошенных нами значений таблицы под ключом #1 (username) есть значение поля username отправленной нам формы
-            if request.form.get('username') in user[1]:
+            if request.form.get('username') == user[1]:
 
                 #если среди запрошенных нами значений таблицы под ключом #2 (password) есть значение поля password отправленной нам формы
-                if request.form.get('password') in user[2]:
+                if request.form.get('password') == user[2]:
                     #добавляем в сессию под ключами username и password значения полей username и password отправленной нам формы
                     session['username'] = request.form.get('username')
                     session['password'] = request.form.get('password')
